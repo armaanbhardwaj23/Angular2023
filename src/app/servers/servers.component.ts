@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerComponent } from '../server/server.component';
-
+import { NgModule } from '@angular/core';
+import { isEmpty } from 'rxjs';
 @Component({
   // selector: '[app-servers]',
   // selector: '.app-servers',
@@ -9,24 +10,25 @@ import { ServerComponent } from '../server/server.component';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-  allownewserver:boolean=false
-  createserver:string='Nothing was created'
-  servername:string='henry'
-  constructor() { 
-  setTimeout(
-    ()=>{this.allownewserver=true;
-    },2000
-  )
+username : string = 'any';
+buttonusedornot : boolean = false;
+buttonused(){
+  if(this.username.length==0)
+  {
+    this.buttonusedornot=true;
   }
-  
-
-  ngOnInit() {
+  else
+  {
+    this.buttonusedornot=false;
   }
-  onCreateServer(){
-    this.createserver='New server created' + this.servername;
-  }
-  onUpdateServerName(event:Event){
-   this.servername=(<HTMLInputElement>event.target).value;
-  }
+  return this.buttonusedornot
 }
-1208160036429854
+onuserclick()
+{
+  this.username=""
+}
+ngOnInit(){
+
+}
+
+};
